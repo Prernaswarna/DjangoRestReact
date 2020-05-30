@@ -5,14 +5,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: [],
+      data: [],
       loaded: false,
       placeholder: "Loading"
     };
   }
 
   componentDidMount() {
-    fetch("https://internet.channeli.in/oauth/authorise/?client_id=k9IXT2RD811seHEj8858BIo24rVCCDHsY50ucEj9/redirect_url=127.0.0.8000/user/confirm")
+    fetch("user")
       .then(response => {
         if (response.status > 400) {
           return this.setState(() => {
@@ -21,10 +21,10 @@ class App extends Component {
         }
         return response.json();
       })
-      .then(code => {
+      .then(data => {
         this.setState(() => {
           return {
-            code,
+            data,
             loaded: true
           };
         });
@@ -32,7 +32,17 @@ class App extends Component {
   }
 
   render() {
-    return (<p>{this.state.code}</p>);
+    return (
+      <ul>
+        {this.state.data.map(contact => {
+          return (
+            <li key={contact.username}>
+              {contact.email} - {contact.username}
+            </li>
+          );
+        })}
+      </ul>
+    );
   }
 }
 

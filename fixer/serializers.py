@@ -4,7 +4,7 @@ from fixer.models import User , Project , Bug , Comment
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields=['id' , 'username' , 'email' , 'typeofuser']
+        fields=['id' , 'username' , 'email' , 'typeofuser','enroll']
 
 
 class ProjectSerializer(serializers.ModelSerializer):
