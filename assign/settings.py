@@ -39,16 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'fixer.apps.FixerConfig',
-    'frontend',
+    'corsheaders',
     'rest_framework.authtoken',
     'djrichtextfield',
     'oauth2_provider',
-    'corsheaders',
+    
     
     
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -56,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    
     
 ]
 
@@ -159,12 +160,11 @@ CORS_ORIGIN_WHITELIST = (
         #'http://internet.channeli.in',
 )
 
-CORS_ALLOW_CREDENTIALS=True
 
 
 REST_FRAMEWORK={
         'DEFAULT AUTHENTICATION CLASSES' : (
-            'reat_framework.authentication.TokenAuthentication',
+            'react_framework.authentication.TokenAuthentication',
             'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
         ),
         'DEFAULT_PERMISSION_CLASSES':(
