@@ -23,7 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('djrichtextfield/' , include('djrichtextfield.urls')),
     path('' , include('fixer.urls')),
-    path('' , include('frontend.urls')),
     path('o/' , include('oauth2_provider.urls',namespace='oauth2_provider')),
     re_path(r'^o/' , include('oauth2_provider.urls' , namespace='oauth2_provider')),
 ]
