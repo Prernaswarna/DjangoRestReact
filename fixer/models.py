@@ -8,6 +8,7 @@ from rest_framework.authtoken.models import Token
 
 # Create your models here.
 
+
 class User(AbstractUser):
     typeofuser = models.BooleanField(null=True,blank=True);
     enroll = models.IntegerField(unique=True);

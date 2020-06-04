@@ -25,7 +25,7 @@ SECRET_KEY = 'ys(fem==o%p$crcl41%5zo9vu5-om-nc*ruwq_rd4p&_lm)dxb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -164,7 +164,6 @@ CORS_ORIGIN_WHITELIST = (
 
 REST_FRAMEWORK={
         'DEFAULT AUTHENTICATION CLASSES' : (
-            'react_framework.authentication.TokenAuthentication',
             'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
         ),
         'DEFAULT_PERMISSION_CLASSES':(

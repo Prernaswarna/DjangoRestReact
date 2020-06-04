@@ -30,11 +30,9 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    
 
-    @action(detail=True , methods=['get'])
-    def first(self , request , pk=None):
-        return render(request , 'fixer/index.html')
+    permission_classes = [AllowAny]
+    
 
     @action(detail=False , methods=['get','post','options',])
     def confirm(self , request ):
@@ -62,7 +60,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
                 newuser = User(username=username , email=email , typeofuser=typeofuser , enroll=enroll , acstoken = acstoken)
                 newuser.is_staff=True
                 newuser.save()
-                login(request=resquest , user=newuser) 
+                login(request , newuser) 
                 return Response({'data':'User Created'},status=status.HTTP_202_ACCEPTED)
             else:
                 return Response({'data':'User not in IMG'},status=status.HTTP_401_UNAUTHORIZED)
