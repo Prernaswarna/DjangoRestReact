@@ -10,7 +10,7 @@ from rest_framework.authtoken.models import Token
 
 
 class User(AbstractUser):
-    typeofuser = models.BooleanField(null=True,blank=True);
+    typeofuser = models.BooleanField(default=True);
     enroll = models.IntegerField(unique=True);
     acstoken = models.TextField(max_length=1000);
     
@@ -28,13 +28,13 @@ class Project(models.Model):
 
 class Bug(models.Model):
     heading = models.CharField(max_length=200);
-    description = models.CharField(max_length=1000 , null=True , blank=True);
+    description = models.CharField(max_length=1000 , default="Not provided");
     doc=models.FileField(upload_to='documents/',null=True , blank=True);
     tags = models.CharField(max_length=200);
-    status = models.CharField(max_length=100);
+    statusval = models.CharField(max_length=100);
     reporter = models.ForeignKey(User , on_delete=models.CASCADE, related_name='rep');
     project = models.ForeignKey(Project , on_delete=models.CASCADE,related_name='issues');
-    assignee = models.ForeignKey(User , on_delete=models.CASCADE , related_name='assigned');
+    assignee = models.ForeignKey(User , on_delete=models.CASCADE , related_name='assigned', default=None,null=True);
     class Meta:
         ordering=['heading'];
     def __str__(self):

@@ -8,17 +8,19 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    issues=serializers.StringRelatedField(many=True)
+    issues=serializers.StringRelatedField(many=True, required=False , allow_null=True)
     class Meta:
         model = Project
-        fields=['id', 'project_name' , 'wiki' , 'project_members','issues']
+        fields='__all__'
+        read_only_field = ('issues')        
 
 
 class BugSerializer(serializers.ModelSerializer):
-    comments = serializers.StringRelatedField(many=True)
+    #comments = serializers.StringRelatedField(many=True)
     class Meta:
         model = Bug
-        fields=['id','heading' , 'description' , 'doc' , 'tags' , 'status' , 'reporter' , 'project' , 'assignee','comments']
+        fields='__all__'
+        read_only_fields = ( 'doc', )
 
 
 class CommentSerializer(serializers.ModelSerializer):

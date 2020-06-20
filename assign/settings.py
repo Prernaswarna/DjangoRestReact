@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework.authtoken',
     'djrichtextfield',
-    'oauth2_provider',
+    'oauth2_provider',   
     
     
     
@@ -83,6 +84,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'assign.wsgi.application'
 
+SESSION_ENGINE='django.contrib.sessions.backends.signed_cookies'
+CSRF_COOKIE_NAME='frontend_csrftoken'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -90,7 +94,7 @@ WSGI_APPLICATION = 'assign.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'img',
+        'NAME': 'bugfix',
         'USER':'guest',
         'PASSWORD':'Guest123#',
         'HOST':'' ,
@@ -151,26 +155,34 @@ AUTH_USER_MODEL = 'fixer.User'
 
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
-
+CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL=True
-ALLOWED_HOSTS=['*']
 CORS_ORIGIN_WHITELIST = (
         'http://localhost:3000' , 
         'http://localhost:8000' ,
-        #'http://internet.channeli.in',
+        'http://internet.channeli.in',
 )
 
 
 
 REST_FRAMEWORK={
         'DEFAULT AUTHENTICATION CLASSES' : (
-            'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
-        ),
+            'rest_framework.authentication.SessionAuthentication'
+            ),
         'DEFAULT_PERMISSION_CLASSES':(
             'rest_framework.permissions.IsAuthenticated',
         ),
     }
 
-OAUTH2_PROVIDER={
-        'SCOPES':{'read':'Read Scope' , 'write' : 'Write Scope' , 'groups':'Access to your groups' }
-    }
+
+
+
+ASGI_APPLICATION = 'assign.routing.application'
+CHANNEL_LAYERS = {
+        'default':{
+            'BACKEND':'channels_redis.core.RedisChannelLayer',
+            'CONFIG':{
+                "hosts":[('127.0.0.1', 6379)],
+            },
+        },
+}
