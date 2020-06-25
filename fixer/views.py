@@ -3,8 +3,8 @@ from rest_framework.decorators import action , api_view , renderer_classes,permi
 from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework import viewsets
-from fixer.models import Project , User , Bug
-from fixer.serializers import ProjectSerializer , UserSerializer,BugSerializer
+from fixer.models import Project , User , Bug,Comment
+from fixer.serializers import ProjectSerializer , UserSerializer,BugSerializer,CommentSerializer
 from django.http import HttpResponse
 from rest_framework import permissions , status
 from fixer.permissions import IsTeamOrReadOnly , IsAdminOrNoAccess
@@ -86,6 +86,10 @@ class BugViewSet(viewsets.ModelViewSet):
 
 
 
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset= Comment.objects.all()
+    serializer_class=CommentSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 

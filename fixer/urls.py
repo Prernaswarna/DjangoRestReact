@@ -9,7 +9,7 @@ router = DefaultRouter()
 router.register(r'project' , views.ProjectViewSet)
 router.register(r'user' , views.UserViewSet)
 router.register(r'bug' , views.BugViewSet)
-
+router.register(r'comment' , views.CommentViewSet)
 urlpatterns=[
         path('' , include(router.urls)),
     ]
