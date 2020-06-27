@@ -12,7 +12,7 @@ import requests
 import json
 from django.shortcuts import render
 from rest_framework.renderers import JSONRenderer , TemplateHTMLRenderer
-from django.contrib.auth import authenticate , login
+from django.contrib.auth import authenticate , login , logout
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
@@ -76,7 +76,14 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(detail=False , methods=['get',])
     def currentuser(self , request ):
+        if self.request.user.is_anonymous:
+            return Response({'userId':0 , 'typeofuser':False})
         return Response({'userId':self.request.user.id , 'typeofuser':self.request.user.typeofuser})
+    
+    @action(detail=False , methods=['get',])
+    def logoutview(self , request ):
+        logout(request)
+        return Response({'user' : 'You have logged out'})
 
 
 class BugViewSet(viewsets.ModelViewSet):
