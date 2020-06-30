@@ -29,7 +29,7 @@ class Project(models.Model):
 class Bug(models.Model):
     heading = models.CharField(max_length=200);
     description = models.CharField(max_length=1000 , default="Not provided");
-    doc=models.FileField(upload_to='documents/',null=True , blank=True);
+    doc=models.ImageField(upload_to='documents/',null=True , blank=True);
     tags = models.CharField(max_length=200);
     statusval = models.CharField(max_length=100);
     reporter = models.ForeignKey(User , on_delete=models.CASCADE, related_name='rep');

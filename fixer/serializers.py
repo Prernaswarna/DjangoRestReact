@@ -20,7 +20,7 @@ class BugSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bug
         fields='__all__'
-        read_only_fields = ( 'doc', )
+        #read_only_fields = ( 'doc', )
 
 
 class CommentSerializer(serializers.ModelSerializer):

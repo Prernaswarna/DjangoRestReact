@@ -16,6 +16,9 @@ from django.contrib.auth import authenticate , login , logout
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
+from django.core.mail import send_mail
+from assign.settings import EMAIL_HOST_USER
+
 # Create your views here.
 
 
@@ -84,7 +87,20 @@ class UserViewSet(viewsets.ModelViewSet):
     def logoutview(self , request ):
         logout(request)
         return Response({'user' : 'You have logged out'})
+    
 
+    @action(detail=False , methods=['get',])
+    def sendemail(self , request):
+        r =self.request.query_params.get('email');
+        print(r);
+        subject=self.request.query_params.get('subject');
+        message=self.request.query_params.get('message');
+        recepient = r
+        print(subject);
+        print(message);
+        #send_mail(subject , message , EMAIL_HOST_USER ,  [recepient],fail_silently=False)
+        
+        return Response({'user':'Done'})
 
 class BugViewSet(viewsets.ModelViewSet):
     queryset= Bug.objects.all()
