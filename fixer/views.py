@@ -98,7 +98,7 @@ class UserViewSet(viewsets.ModelViewSet):
         recepient = r
         print(subject);
         print(message);
-        #send_mail(subject , message , EMAIL_HOST_USER ,  [recepient],fail_silently=False)
+        send_mail(subject , message , EMAIL_HOST_USER ,  [recepient],fail_silently=False)
         
         return Response({'user':'Done'})
 
