@@ -91,14 +91,17 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(detail=False , methods=['get',])
     def sendemail(self , request):
+        print('inside if');
         r =self.request.query_params.get('email');
         print(r);
         subject=self.request.query_params.get('subject');
         message=self.request.query_params.get('message');
-        recepient = r
+        recepient = r;
+        hmessage="""<html><head></head><body><p>Hello There ,</p></br></br><h4>An issue has been added to your project </h4></br></br><p>From</p></br><p>Bugfix Team</p></body></html>""";
         print(subject);
         print(message);
-        send_mail(subject , message , EMAIL_HOST_USER ,  [recepient],fail_silently=False)
+            
+        #send_mail(subject , message , EMAIL_HOST_USER ,  [recepient],fail_silently=False, html_message=hmessage)
         
         return Response({'user':'Done'})
 
