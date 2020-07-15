@@ -5,7 +5,9 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
-
+import os
+import uuid
+from django.dispatch import receiver
 # Create your models here.
 
 
@@ -44,6 +46,7 @@ class Bug(models.Model):
             return ["heading" , "description" , "tags"]
         else:
             return []
+
 
 
 

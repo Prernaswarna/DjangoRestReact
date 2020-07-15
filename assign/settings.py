@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djrichtextfield',
     'oauth2_provider',   
-    
+    'django_cleanup.apps.CleanupConfig',    
     
     
 ]
