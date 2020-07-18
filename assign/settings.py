@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+from assign import local_settings
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -95,8 +95,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bugfix',
-        'USER':'guest',
-        'PASSWORD':'Guest123#',
+        'USER':local_settings.database_user,
+        'PASSWORD':local_settings.database_password,
         'HOST':'' ,
         'POR':'',
     }
@@ -193,5 +193,5 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'prernaswarna@gmail.com'
-EMAIL_HOST_PASSWORD = 'dummy123#'
+EMAIL_HOST_USER = local_settings.email_username
+EMAIL_HOST_PASSWORD = local_settings.email_password

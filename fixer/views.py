@@ -18,7 +18,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
 from django.core.mail import send_mail
 from assign.settings import EMAIL_HOST_USER
-
+from assign import local_settings
 # Create your views here.
 
 
@@ -41,7 +41,7 @@ class UserViewSet(viewsets.ModelViewSet):
     def confirm(self , request ):
         authorization_code = self.request.query_params.get('code')
         print(authorization_code)
-        payload = {'client_id':'Z0D8JmQtXjXJxp63bsnt2HEGvWuw7sSRD19oZ4FO' ,'client_secret':'hTgORjftOyZ0zikE5icUEUw22Q1RP3W3tRckzmZsIjBe2W9HegNsU71X9Ps1H8E6N6ZRu4cFhZqUnPf9MKAT8d5Kar9Drp8apcfNHyumFoR38n3JNSPahVmjv1cSmcGw','grant_type':'authorization_code' , 'redirect_url':'http://127.0.0.1:3000/' , 'code' : authorization_code}
+        payload = {'client_id':'Z0D8JmQtXjXJxp63bsnt2HEGvWuw7sSRD19oZ4FO' ,'client_secret':local_settings.my_client_secret,'grant_type':'authorization_code' , 'redirect_url':'http://127.0.0.1:3000/' , 'code' : authorization_code}
         userdata = requests.post('https://internet.channeli.in/open_auth/token/' , data=payload).json()
         acstoken=userdata['access_token']
         print(acstoken)
