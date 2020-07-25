@@ -20,6 +20,7 @@ docker run -p 6379:6379 -d redis:5
 * Create a Mysql database
 * Run the following command
 ```bash 
+cd assign
 cp local_settings_template.py local_settings.py
 ```
 Fill in proper values in the fields provided
