@@ -6,6 +6,8 @@ App to report issues.
 
 Bug Fix is an application that lets you report issues with projects , assign them and add comments.
 
+Link to frontend repository [Frontend](https://github.com/Prernaswarna/DjangoRestFrontend)
+
 ## Setup Instructions
 
 * Clone the repository
