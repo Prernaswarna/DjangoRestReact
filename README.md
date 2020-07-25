@@ -1,12 +1,12 @@
-#Bug Fix 
+# Bug Fix 
 
 App to report issues.
 
-##Description
+## Description
 
 Bug Fix is an application that lets you report issues with projects , assign them and add comments.
 
-##Installation
+## Installation
 
 * Clone the repository
 * Use the following command to install all required dependencies
