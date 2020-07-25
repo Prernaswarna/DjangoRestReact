@@ -6,7 +6,7 @@ App to report issues.
 
 Bug Fix is an application that lets you report issues with projects , assign them and add comments.
 
-## Installation
+## Setup Instructions
 
 * Clone the repository
 * Use the following command to install all required dependencies
@@ -35,4 +35,4 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-Backend installation is complete !!
+Backend setup is complete !!
