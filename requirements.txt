@@ -20,7 +20,7 @@ django-cors-middleware==1.5.0
 django-js-asset==1.2.2
 django-oauth-toolkit==1.3.2
 django-richtextfield==1.5.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 hiredis==1.0.1
 httpie==2.1.0
 hyperlink==19.0.0
